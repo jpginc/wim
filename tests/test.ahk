@@ -34,6 +34,25 @@ if(wim.mode != "insert")
 	debugger("i should change wim from normal mode to insert mode")
 }
 
+wim.mode := "insert"
+wim.addNormalModeShortcut("j")
+wim.registerKey("j")
+
+if(wim.mode != "normal")
+{
+	debugger("regestring a normal shortcut isn't working")
+}
+
+wim := new WimClass()
+wim.addNormalModeShortcut("jk")
+	.registerKey("j")
+	.registerKey("k")
+	
+if(wim.mode != "normal")
+{
+	debugger("registering a multi key shortcut doesnt work")
+}
+
 ExitApp
 #Include debugger.ahk
 #Include ../Wim.ahk

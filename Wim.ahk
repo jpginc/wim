@@ -1,18 +1,41 @@
 ﻿class WimClass
 {
+	goToNormalModeCombos := ["Esc", "Escape"]
+	goToInsertModeCombos := ["i"]
 	
 	mode := "insert"
 	
+	__new()
+	{
+		this._inputBuffer := new InputBufferClass()
+		return this
+	}
+	
 	registerKey(key)
 	{
-		if(key == "Esc" || key == "Escape")
+		this._inputBuffer.registerKey(key)
+		return this
+	}
+	
+	addNormalModeShortcut(shortcut)
+	{
+		this.goToNormalModeCombos.insert(shortcut)
+		return this
+	}
+	
+	_inArray(arr, val)
+	{
+		loop, % arr.maxIndex()
 		{
-			this.mode := "normal"
+			if(arr[A_index] == val)
+			{
+				return true
+			}
 		}
-		if(key == "i")
-		{
-			this.mode := "insert"
-		}
-		return
+		return false
 	}
 }
+
+#Include macroTriggerJudge.ahk
+#Include specialKeys.ahk
+#Include macro.ahk
